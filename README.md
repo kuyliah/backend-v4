@@ -21,17 +21,3 @@
   <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
   <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-
-## Project Description
-
-E-Commerce web application
-
-### Project Learning Goals
-
-- Role Based Authentication
-- NoSQL Database, probably MongoDB
-- Explore testing
-- Explore Deployment/DevOPs
-- React/Redux frontend in TypeScript
-- React Hooks
-- SSR with NextJS ?
