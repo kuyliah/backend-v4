@@ -7,14 +7,14 @@ import {
 } from '@nestjs/common';
 
 @Injectable()
-export class SellerGuard implements CanActivate {
+export class StudentGuard implements CanActivate {
   constructor() {}
 
   canActivate(context: ExecutionContext) {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
 
-    if (user.seller) {
+    if (user.student) {
       return true;
     }
 

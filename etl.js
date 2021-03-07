@@ -3,7 +3,7 @@ const axios = require('axios');
 (async () => {
   try {
     const { data } = await axios.post('http://localhost:3000/api/auth/login', {
-      username: 'kelvin',
+      email: 'deary',
       password: 'password',
       seller: true,
     });

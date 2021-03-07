@@ -2,12 +2,13 @@ import * as bcrypt from 'bcrypt';
 import * as mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
-  username: String,
+  email: String,
   password: {
     type: String,
     select: false,
   },
-  seller: {
+  fullname: String,
+  student: {
     type: Boolean,
     default: false,
   },
@@ -18,6 +19,12 @@ export const UserSchema = new mongoose.Schema({
     state: String,
     country: String,
     zip: Number,
+  },
+  assessment: {
+    status: Boolean,
+    title: String,
+    result: String,
+    result_riasec: String
   },
   created: { type: Date, default: Date.now },
 });

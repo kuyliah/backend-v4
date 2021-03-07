@@ -9,10 +9,19 @@ export interface Address {
   zip: number;
 }
 
+export interface Assessment {
+  status: boolean;
+  title: string;
+  result: string;
+  result_riasec: string;
+}
+
 export interface User extends Document {
-  username: string;
+  email: string;
   readonly password: string;
-  seller: boolean;
+  student: boolean;
   address: Address;
+  assessment: Assessment;
   created: Date;
+  fullname: string;
 }

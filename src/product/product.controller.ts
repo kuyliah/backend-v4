@@ -9,8 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-
-import { SellerGuard } from '../guards/seller.guard';
+import { StudentGuard } from '../guards/student.guard';
 import { Product } from '../types/product';
 import { User as UserDocument } from '../types/user';
 import { User } from '../utilities/user.decorator';
@@ -39,7 +38,7 @@ export class ProductController {
   // }
 
   @Post()
-  @UseGuards(AuthGuard('jwt'), SellerGuard)
+  @UseGuards(AuthGuard('jwt'), StudentGuard)
   async create(
     @Body() product: CreateProductDTO,
     @User() user: UserDocument,
@@ -53,7 +52,7 @@ export class ProductController {
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard('jwt'), SellerGuard)
+  @UseGuards(AuthGuard('jwt'), StudentGuard)
   async update(
     @Param('id') id: string,
     @Body() product: UpdateProductDTO,
@@ -64,7 +63,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'), SellerGuard)
+  @UseGuards(AuthGuard('jwt'), StudentGuard)
   async delete(
     @Param('id') id: string,
     @User() user: UserDocument,

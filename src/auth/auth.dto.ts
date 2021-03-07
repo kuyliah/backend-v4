@@ -1,13 +1,15 @@
 import { Address } from '../types/user';
+import { Assessment } from '../types/user';
 
 export interface LoginDTO {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface RegisterDTO {
-  username: string;
+  email: string;
   password: string;
-  seller?: boolean;
+  student?: boolean;
   address?: Address;
+  assessment?: Assessment;
 }

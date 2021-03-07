@@ -1,6 +1,6 @@
 export interface Payload {
-  username: string;
-  seller: boolean;
+  email: string;
+  student: boolean;
   iat?: number;
   expiresIn?: string;
 }
