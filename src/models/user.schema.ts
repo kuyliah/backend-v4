@@ -12,6 +12,10 @@ export const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  membership: {
+    type: Boolean,
+    default: false,
+  },
   address: {
     addr1: String,
     addr2: String,

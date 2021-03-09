@@ -10,6 +10,7 @@ export interface RegisterDTO {
   email: string;
   password: string;
   student?: boolean;
+  membership?: boolean;
   address?: Address;
   assessment?: Assessment;
 }

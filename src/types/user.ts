@@ -20,6 +20,7 @@ export interface User extends Document {
   email: string;
   readonly password: string;
   student: boolean;
+  membership: boolean;
   address: Address;
   assessment: Assessment;
   created: Date;
