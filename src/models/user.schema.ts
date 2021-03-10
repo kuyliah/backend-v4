@@ -10,7 +10,7 @@ export const UserSchema = new mongoose.Schema({
   fullname: String,
   student: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   membership: {
     type: Boolean,

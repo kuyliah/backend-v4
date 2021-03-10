@@ -14,9 +14,9 @@ if (process.env.NODE_ENV === 'test') {
 
 const server = Express();
 server.use(cors());
-server.get('/', (req, res) => res.send('api: version 1.0.0'));
-server.get('/_ah/health', (req, res) => res.send('api: version 1.0.0'));
-server.get('/_ah/start', (req, res) => res.send('api: version 1.0.0'));
+server.get('/', (req, res) => res.send('api: version 2.1.16'));
+server.get('/_ah/health', (req, res) => res.send('api: version 2.1.16'));
+server.get('/_ah/start', (req, res) => res.send('api: version 2.1.16'));
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server));

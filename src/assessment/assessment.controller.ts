@@ -10,19 +10,19 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { StudentGuard } from '../guards/student.guard';
-import { Product } from '../types/product';
+import { Assessment } from '../types/assessment';
 import { User as UserDocument } from '../types/user';
 import { User } from '../utilities/user.decorator';
-import { CreateProductDTO, UpdateProductDTO } from './product.dto';
-import { ProductService } from './product.service';
+import { CreateAssessmentDTO, UpdateAssessmentDTO } from './assessment.dto';
+import { AssessmentService } from './assessment.service';
 
-@Controller('product')
-export class ProductController {
-  constructor(private productService: ProductService) {}
+@Controller('assessment')
+export class AssessmentController {
+  constructor(private assessmentService: AssessmentService) {}
 
   @Get()
-  async listAll(): Promise<Product[]> {
-    return await this.productService.findAll();
+  async listAll(): Promise<Assessment[]> {
+    return await this.assessmentService.findAll();
   }
 
   // @Get('/mine')
@@ -40,26 +40,26 @@ export class ProductController {
   @Post()
   @UseGuards(AuthGuard('jwt'), StudentGuard)
   async create(
-    @Body() product: CreateProductDTO,
+    @Body() assessment: CreateAssessmentDTO,
     @User() user: UserDocument,
-  ): Promise<Product> {
-    return await this.productService.create(product, user);
+  ): Promise<Assessment> {
+    return await this.assessmentService.create(assessment, user);
   }
 
   @Get(':id')
-  async read(@Param('id') id: string): Promise<Product> {
-    return await this.productService.findById(id);
+  async read(@Param('id') id: string): Promise<Assessment> {
+    return await this.assessmentService.findById(id);
   }
 
   @Put(':id')
   @UseGuards(AuthGuard('jwt'), StudentGuard)
   async update(
     @Param('id') id: string,
-    @Body() product: UpdateProductDTO,
+    @Body() assessment: UpdateAssessmentDTO,
     @User() user: UserDocument,
-  ): Promise<Product> {
+  ): Promise<Assessment> {
     const { id: userId } = user;
-    return await this.productService.update(id, product, userId);
+    return await this.assessmentService.update(id, assessment, userId);
   }
 
   @Delete(':id')
@@ -67,8 +67,8 @@ export class ProductController {
   async delete(
     @Param('id') id: string,
     @User() user: UserDocument,
-  ): Promise<Product> {
+  ): Promise<Assessment> {
     const { id: userId } = user;
-    return await this.productService.delete(id, userId);
+    return await this.assessmentService.delete(id, userId);
   }
 }
