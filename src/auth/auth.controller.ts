@@ -1,4 +1,5 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { User } from 'src/types/user';
 
 import { UserService } from '../shared/user.service';
 import { Payload } from '../types/payload';
@@ -34,5 +35,15 @@ export class AuthController {
     };
     const token = await this.authService.signPayload(payload);
     return { user, token };
+  }
+
+  @Get('user/:id')
+  findOne(@Param('id') id): Promise<User> {
+    return this.userService.findOne(id);
+  }
+
+  @Get('users')
+  findAll(): Promise<User[]> {
+    return this.userService.findAll();
   }
 }

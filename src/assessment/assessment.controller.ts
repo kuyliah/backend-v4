@@ -71,4 +71,14 @@ export class AssessmentController {
     const { id: userId } = user;
     return await this.assessmentService.delete(id, userId);
   }
+
+  @Get(':id')
+  findOne(@Param('id') id): Promise<Assessment> {
+    return this.assessmentService.findById(id);
+  }
+
+  @Get('assessments')
+  findAll(): Promise<Assessment[]> {
+    return this.assessmentService.findAll();
+  }
 }

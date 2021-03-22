@@ -23,9 +23,9 @@ export class UserService {
     return this.sanitizeUser(createdUser);
   }
 
-  async find() {
-    return await this.userModel.find();
-  }
+  // async find() {
+  //   return await this.userModel.find();
+  // }
 
   async findByLogin(userDTO: LoginDTO) {
     const { email, password } = userDTO;
@@ -53,5 +53,13 @@ export class UserService {
     // delete sanitized['password'];
     return sanitized;
     // return user.depopulate('password');
+  }
+
+  async findOne(id: string): Promise<User> {
+    return await this.userModel.findOne({ _id: id });
+  }
+
+  async findAll(): Promise<User[]> {
+    return await this.userModel.find();
   }
 }
