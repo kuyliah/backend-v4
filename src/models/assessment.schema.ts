@@ -8,6 +8,7 @@ export const AssessmentSchema = new mongoose.Schema({
   status: Boolean,
   title: String,
   result: String,
+  riasec_score: String,
   result_riasec: {
     realistic: String,
     investigate: String,

@@ -28,6 +28,7 @@ export const UserSchema = new mongoose.Schema({
     status: Boolean,
     title: String,
     result: String,
+    riasec_score: String,
     result_riasec: String
   },
   created: { type: Date, default: Date.now },

@@ -4,6 +4,7 @@ export interface CreateAssessmentDTO {
   title: string;
   status: boolean,
   result: string,
+  riasec_score: string,
   result_riasec: ResultRiasec;
 }
 

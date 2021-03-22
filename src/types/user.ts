@@ -13,6 +13,7 @@ export interface Assessment {
   status: boolean;
   title: string;
   result: string;
+  riasec_score: string;
   result_riasec: string;
 }
 

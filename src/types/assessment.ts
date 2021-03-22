@@ -16,6 +16,7 @@ export interface Assessment extends Document {
   title: string;
   status: boolean;
   result: string;
+  riasec_score: string;
   result_riasec: ResultRiasec;
   created: Date;
 }
