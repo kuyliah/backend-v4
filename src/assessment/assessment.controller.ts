@@ -20,10 +20,10 @@ import { AssessmentService } from './assessment.service';
 export class AssessmentController {
   constructor(private assessmentService: AssessmentService) {}
 
-  @Get()
-  async listAll(): Promise<Assessment[]> {
-    return await this.assessmentService.findAll();
-  }
+  // @Get()
+  // async listAll(): Promise<Assessment[]> {
+  //   return await this.assessmentService.findAll();
+  // }
 
   // @Get('/mine')
   // @UseGuards(AuthGuard('jwt'), SellerGuard)
@@ -46,9 +46,10 @@ export class AssessmentController {
     return await this.assessmentService.create(assessment, user);
   }
 
-  @Get(':id')
-  async read(@Param('id') id: string): Promise<Assessment> {
-    return await this.assessmentService.findById(id);
+  @Get()
+  @UseGuards(AuthGuard('jwt'), StudentGuard)
+  async read(@User() user: UserDocument): Promise<Assessment> {
+    return await this.assessmentService.findByOwner(user);
   }
 
   @Put(':id')
@@ -72,10 +73,10 @@ export class AssessmentController {
     return await this.assessmentService.delete(id, userId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id): Promise<Assessment> {
-    return this.assessmentService.findById(id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id): Promise<Assessment> {
+  //   return this.assessmentService.findById(id);
+  // }
 
   @Get('assessments')
   findAll(): Promise<Assessment[]> {

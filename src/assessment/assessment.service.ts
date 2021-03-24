@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 import { Assessment } from '../types/assessment';
 import { User } from '../types/user';
@@ -8,25 +8,34 @@ import { CreateAssessmentDTO, UpdateAssessmentDTO } from './assessment.dto';
 
 @Injectable()
 export class AssessmentService {
-  constructor(@InjectModel('Assessment') private assessmentModel: Model<Assessment>) {}
+  constructor(
+    @InjectModel('Assessment') private assessmentModel: Model<Assessment>,
+  ) {}
 
   async findAll(): Promise<Assessment[]> {
     return await this.assessmentModel.find().populate('owner');
   }
 
-  // async findByOwner(userId: string): Promise<Product[]> {
-  //   return await this.productModel.find({ owner: userId }).populate('owner');
-  // }
+  async findByOwner(user: User): Promise<Assessment> {
+    return await this.assessmentModel
+      .findOne({ owner: user })
+      .populate({ path: 'owner' });
+  }
 
   async findById(id: string): Promise<Assessment> {
-    const assessment = await this.assessmentModel.findById(id).populate('owner');
+    const assessment = await this.assessmentModel
+      .findById(id)
+      .populate('owner');
     if (!assessment) {
       throw new HttpException('Assessment not found', HttpStatus.NO_CONTENT);
     }
     return assessment;
   }
 
-  async create(assessmentDTO: CreateAssessmentDTO, user: User): Promise<Assessment> {
+  async create(
+    assessmentDTO: CreateAssessmentDTO,
+    user: User,
+  ): Promise<Assessment> {
     const assessment = await this.assessmentModel.create({
       ...assessmentDTO,
       owner: user,
